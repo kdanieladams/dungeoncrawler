@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Sprites/rings_and_potions.png" type="Texture" id=1]
+[ext_resource path="res://Items/Ring.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Audio/SFX/pickup_key.wav" type="AudioStream" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 3.10507
+
+[node name="Ring" type="Area2D"]
+script = ExtResource( 2 )
+
+[node name="rings_and_potions" type="Sprite" parent="."]
+position = Vector2( -0.525339, -0.26267 )
+texture = ExtResource( 1 )
+offset = Vector2( 1, 0 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 8, 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="SfxPickup" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+volume_db = -10.0

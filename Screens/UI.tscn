@@ -1,0 +1,179 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/Sprites/keys.png" type="Texture" id=1]
+[ext_resource path="res://Screens/UI.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Sprites/heart.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Darkness.png" type="Texture" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "fade_in"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
+}
+
+[node name="UI" type="CanvasLayer"]
+pause_mode = 2
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 140.0 ]
+}
+
+[node name="Control" type="Control" parent="."]
+anchor_left = -0.00390625
+anchor_top = 0.00694444
+anchor_right = 1.00391
+anchor_bottom = 0.996945
+margin_top = 6.55651e-07
+margin_right = -0.000946045
+margin_bottom = 58.4399
+rect_scale = Vector2( 1, 0.72 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Darkness" type="TextureRect" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_top = -1.38889
+margin_right = 1.0
+margin_bottom = -1.38889
+texture = ExtResource( 4 )
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UI Background" type="ColorRect" parent="Control"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -15.0
+margin_bottom = 1.52588e-05
+color = Color( 0, 0, 0, 0.470588 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Key Display" type="Control" parent="Control"]
+anchor_left = 0.004
+anchor_top = 1.0
+anchor_right = 0.004
+anchor_bottom = 1.0
+margin_left = -1.032
+margin_top = -14.0
+margin_right = 64.968
+margin_bottom = -2.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Keys" type="Sprite" parent="Control/Key Display"]
+position = Vector2( 6, 5.55556 )
+texture = ExtResource( 1 )
+hframes = 6
+
+[node name="Label" type="Label" parent="Control/Key Display/Keys"]
+margin_left = 2.81844
+margin_top = -2.46281
+margin_right = 25.8184
+margin_bottom = 11.5372
+rect_scale = Vector2( 0.3, 0.3 )
+text = "x 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LblMessage" type="Label" parent="Control"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 41.0
+margin_top = -14.0
+margin_right = 377.0
+margin_bottom = 35.0
+rect_scale = Vector2( 0.3, 0.3 )
+text = "Test Message"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Hearts" type="Control" parent="Control"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -47.0
+margin_top = -14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Heart" type="Sprite" parent="Control/Hearts"]
+position = Vector2( 14.5, 6.27777 )
+scale = Vector2( 1, 1.38889 )
+texture = ExtResource( 3 )
+hframes = 3
+
+[node name="Heart2" type="Sprite" parent="Control/Hearts"]
+position = Vector2( 20.5, 6.27777 )
+scale = Vector2( 1, 1.38889 )
+texture = ExtResource( 3 )
+hframes = 3
+
+[node name="Heart3" type="Sprite" parent="Control/Hearts"]
+position = Vector2( 26.5, 6.27777 )
+scale = Vector2( 1, 1.38889 )
+texture = ExtResource( 3 )
+hframes = 3
+
+[node name="Heart4" type="Sprite" parent="Control/Hearts"]
+position = Vector2( 32.5, 6.27776 )
+scale = Vector2( 1, 1.38889 )
+texture = ExtResource( 3 )
+hframes = 3
+
+[node name="Heart5" type="Sprite" parent="Control/Hearts"]
+position = Vector2( 38.5, 6.27776 )
+scale = Vector2( 1, 1.38889 )
+texture = ExtResource( 3 )
+hframes = 3
+
+[node name="Blackout" type="ColorRect" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/Blackout"]
+anims/fade_in = SubResource( 1 )
+anims/fade_out = SubResource( 2 )

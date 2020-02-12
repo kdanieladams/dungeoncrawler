@@ -1,0 +1,86 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/Sprites/switch.png" type="Texture" id=1]
+[ext_resource path="res://Interactables/Switch.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Audio/SFX/switch1.wav" type="AudioStream" id=3]
+[ext_resource path="res://Assets/Audio/SFX/switch2.wav" type="AudioStream" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 3.43646, 3.18114 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 3.423, 5.95155 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "switch"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Step 1:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Step2:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[node name="Switch" type="StaticBody2D"]
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+hframes = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.509048, 3.83031 )
+shape = SubResource( 1 )
+
+[node name="Interacter" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interacter"]
+modulate = Color( 0.941176, 0.964706, 0.203922, 1 )
+show_behind_parent = true
+position = Vector2( -0.509048, 2.83675 )
+shape = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/switch = SubResource( 3 )
+
+[node name="Step 1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+volume_db = -10.0
+attenuation = 0.840896
+
+[node name="Step2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+volume_db = -10.0
+[connection signal="body_entered" from="Interacter" to="." method="_on_Interacter_body_entered"]
+[connection signal="body_exited" from="Interacter" to="." method="_on_Interacter_body_exited"]

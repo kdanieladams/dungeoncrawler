@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Sprites/rings_and_potions.png" type="Texture" id=1]
+[ext_resource path="res://Items/Potion.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Audio/SFX/bottle.wav" type="AudioStream" id=3]
+
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 2.75847, 3.38744 )
+
+[node name="Potion" type="Area2D"]
+script = ExtResource( 2 )
+
+[node name="rings_and_potions" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 9, 8, 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 0.715897 )
+shape = SubResource( 1 )
+
+[node name="Bottle" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+volume_db = -10.0
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

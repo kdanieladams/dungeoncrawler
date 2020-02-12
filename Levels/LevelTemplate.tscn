@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Actors/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Levels/LevelNode.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Tilesets/DungeonTiles.tres" type="TileSet" id=3]
+[ext_resource path="res://Screens/UI.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Audio/BGM/underground.ogg" type="AudioStream" id=5]
+[ext_resource path="res://Assets/Audio/SFX/dooropen.wav" type="AudioStream" id=6]
+[ext_resource path="res://Assets/Audio/SFX/gate.ogg" type="AudioStream" id=7]
+
+
+
+[node name="Level_01" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="LevelAudio" type="Node" parent="."]
+
+[node name="BGM" type="AudioStreamPlayer" parent="LevelAudio"]
+stream = ExtResource( 5 )
+volume_db = -20.0
+
+[node name="DoorOpen" type="AudioStreamPlayer" parent="LevelAudio"]
+stream = ExtResource( 6 )
+volume_db = -10.0
+
+[node name="GateOpen" type="AudioStreamPlayer" parent="LevelAudio"]
+stream = ExtResource( 7 )
+volume_db = -20.0
+
+[node name="UI" parent="." instance=ExtResource( 4 )]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 126.99, 72.2327 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 8, 8 )
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+format = 1
+
+[node name="TileMap2" type="TileMap" parent="."]
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 8, 8 )
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+collision_layer = 2
+collision_mask = 2
+format = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="TileMap3" type="TileMap" parent="."]
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 8, 8 )
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+format = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Items" type="Node" parent="."]
+
+[node name="Interactables" type="Node" parent="."]
+[connection signal="collided" from="Player" to="." method="_on_Player_collided"]
